@@ -7,9 +7,12 @@ import constants as c
 import time as t
 
 class SIMULATION:
-    def __init__(self):
+    def __init__(self, type):
         # connect to pybullet
-        self.physicsClient = p.connect(p.GUI)
+        if type == "DIRECT":
+            self.physicsClient = p.connect(p.DIRECT)
+        else:
+            self.physicsClient = p.connect(p.GUI)
         # adds floor to sim
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         # adds gravity force for sim
@@ -27,5 +30,8 @@ class SIMULATION:
         	
             t.sleep(c.sleep)
         
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
+
     def __del__(self):
         p.disconnect()

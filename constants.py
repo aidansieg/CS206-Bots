@@ -10,9 +10,10 @@ backLegAmplitude = np.pi / 4
 backLegFrequency = 10
 BackLegPhaseOffset = 0
 
-loop = 200
+loop = 400
 gravity = -9.8
 sleep = 1/240
+numberOfGenerations = 10
 
 bottomAngleRange = 0
 topAngleRange = 2 * np.pi
