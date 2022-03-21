@@ -1,9 +1,11 @@
+from asyncore import read
 from random import weibullvariate
 import numpy as np
 import pyrosim.pyrosim as pyrosim
 import random
 import os
 import time
+import constants as c
 
 class SOLUTION:
     def __init__(self, nextAvailableID):
@@ -11,24 +13,36 @@ class SOLUTION:
         self.weights = self.weights * 2 - 1
         self.myID = nextAvailableID
     
-    def Evaluate(self, type):
+    def Start_Simulation(self, type):
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
 
         strID = str(self.myID)
+        os.system("python3 simulate.py {} {}".format(type, strID) + " &")
 
-        os.system("python3 simulate.py "+ type + " " + strID + " &")
+    def Wait_For_Simulation_To_End(self):
+        strID = str(self.myID)
 
-        fitnessFile = open("fitness{}.txt".format(strID), "r")
+        fitnessFileName = "fitness{}.txt".format(strID)
 
-        while not os.path.exists(fitnessFile):
+        while not os.path.exists("fitness{}.txt".format(strID)):
             time.sleep(0.01)
 
-        self.fitness = float(fitnessFile.read())
-        print(self.fitness)
-        fitnessFile.close()
+        f = open(fitnessFileName)
 
+        temp = f.readline()
+
+        try:
+            self.fitness = float(temp)
+
+        except ValueError:
+            self.fitness = c.valueErr
+            
+        f.close()
+
+        os.system("rm fitness{}.txt".format(strID))
+        
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
 

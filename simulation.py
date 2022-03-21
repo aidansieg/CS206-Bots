@@ -7,9 +7,10 @@ import constants as c
 import time as t
 
 class SIMULATION:
-    def __init__(self, type):
+    def __init__(self, type, solutionID):
+        self.directOrGUI = type
         # connect to pybullet
-        if type == "DIRECT":
+        if self.directOrGUI == "DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
         else:
             self.physicsClient = p.connect(p.GUI)
@@ -19,7 +20,7 @@ class SIMULATION:
         p.setGravity(0, 0, c.gravity)
        
         self.world = w.WORLD()
-        self.robot = r.ROBOT()
+        self.robot = r.ROBOT(solutionID)
     
     def Run(self):
         for time in range(c.loop):
@@ -28,7 +29,8 @@ class SIMULATION:
             self.robot.Think()
             self.robot.Act(time)
         	
-            t.sleep(c.sleep)
+            if self.directOrGUI == "GUI":
+                t.sleep(c.sleep)
         
     def Get_Fitness(self):
         self.robot.Get_Fitness()

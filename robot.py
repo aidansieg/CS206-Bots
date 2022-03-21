@@ -14,7 +14,7 @@ class ROBOT:
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
         self.nn = NEURAL_NETWORK("brain{}.nndf".format(solutionID))
-        os.system("del brain{}.nndf".format(self.solutionID))
+        os.system("rm brain{}.nndf".format(self.solutionID))
     
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -41,12 +41,13 @@ class ROBOT:
 
     def Think(self):
         self.nn.Update()
-        self.nn.Print()
+        # self.nn.Print()
 
     def Get_Fitness(self):
         stateOfLinkZero = p.getLinkState(self.robotId, 0)[0]
         xCoordinateOfLinkZero = stateOfLinkZero[0]
+
         f = open("tmp{}.txt".format(self.solutionID), "w")
-        os.system("mv tmp{}.txt fitness{}.txt".format(self.solutionID, self.solutionID))
         f.write(str(xCoordinateOfLinkZero))
+        os.system("mv tmp{}.txt fitness{}.txt".format(self.solutionID, self.solutionID))
         f.close()
