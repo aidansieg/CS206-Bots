@@ -14,6 +14,7 @@ loop = 400
 gravity = -9.8
 sleep = 1/240
 numberOfGenerations = 10
+populationSize = 2
 
 bottomAngleRange = 0
 topAngleRange = 2 * np.pi
