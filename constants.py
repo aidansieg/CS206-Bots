@@ -12,10 +12,16 @@ BackLegPhaseOffset = 0
 
 loop = 1000
 gravity = -9.8
-sleep = 1/240
+sleep = 1/60
 numberOfGenerations = 10
 populationSize = 10
+
 valueErr = 0.23615654831547395
+
+motorJointRange = 0.325
+
+numSensorNeurons = 9
+numMotorNeurons = 8
 
 bottomAngleRange = 0
 topAngleRange = 2 * np.pi
