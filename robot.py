@@ -1,3 +1,4 @@
+from email.mime import base
 import os
 import pyrosim.pyrosim as pyrosim
 import pybullet as p
@@ -45,10 +46,11 @@ class ROBOT:
         # self.nn.Print()
 
     def Get_Fitness(self):
-        stateOfLinkZero = p.getLinkState(self.robotId, 0)[0]
-        xCoordinateOfLinkZero = stateOfLinkZero[0]
+        basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
+        basePosition = basePositionAndOrientation[0]
+        xPosition = basePosition[0]
 
         f = open("tmp{}.txt".format(self.solutionID), "w")
-        f.write(str(xCoordinateOfLinkZero))
+        f.write(str(xPosition))
         os.system("mv tmp{}.txt fitness{}.txt".format(self.solutionID, self.solutionID))
         f.close()
