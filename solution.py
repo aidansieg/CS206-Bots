@@ -47,7 +47,24 @@ class SOLUTION:
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
 
-        pyrosim.Send_Cube(name="Box", pos=[-5,2,0.5], size=[1,1,1])        
+        # left and right wall
+        pyrosim.Send_Cube(name="Box", pos=[-3,-5,0.5], size=[50,2,1])
+        pyrosim.Send_Cube(name="Box", pos=[-3,5,0.5], size=[50,2,1])
+        # back wall
+        pyrosim.Send_Cube(name="Box", pos=[3,0,0.5], size=[2,8,1])
+        
+        # TODO: Tighten the path that the robot follows 
+        # blocks
+        pyrosim.Send_Cube(name="Box", pos=[1,-2,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-2,-2,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-6,-1,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-4,-1,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-8,-3,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-11,3,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-13,1,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-14,-1,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-18,-3,0.5], size=[1,1,1])
+        pyrosim.Send_Cube(name="Box", pos=[-20,-1,0.5], size=[1,1,1])
 
         pyrosim.End()
 
