@@ -10,11 +10,11 @@ backLegAmplitude = np.pi / 4
 backLegFrequency = 10
 BackLegPhaseOffset = 0
 
-loop = 1000
+loop = 2000
 gravity = -9.8
 sleep = 1/60
-numberOfGenerations = 10
-populationSize = 10
+numberOfGenerations = 20
+populationSize = 20
 
 valueErr = 0.23615654831547395
 
